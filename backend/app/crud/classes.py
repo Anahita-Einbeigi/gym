@@ -1,0 +1,50 @@
+from sqlalchemy.orm import Session
+from app.model.classes import GymClass
+from app.schema.classes import GymClassResponse
+from fastapi import HTTPException
+
+
+def get_classes(db: Session):
+    classes = db.query(GymClass).all()
+    result = []
+    for c in classes:
+        booked_count = len(c.bookings)
+        free_spots = c.capacity - booked_count
+        is_full = free_spots <= 0
+
+        result.append(
+            GymClassResponse(
+                id=c.id,
+                name=c.name,
+                trainer=c.trainer,
+                training=c.training,  # keep same as DB
+                datetime=c.datetime,
+                capacity=c.capacity,
+                image=c.image,
+                free_spots=free_spots,
+                is_full=is_full
+            )
+        )
+    return result
+
+
+def get_class(class_id: int, db: Session):
+    c = db.query(GymClass).filter(GymClass.id == class_id).first()
+    if not c:
+        raise HTTPException(status_code=404, detail="Class not found")
+
+    booked_count = len(c.bookings)
+    free_spots = c.capacity - booked_count
+    is_full = free_spots <= 0
+
+    return GymClassResponse(
+        id=c.id,
+        name=c.name,
+        trainer=c.trainer,
+        training=c.training,  # keep same as DB
+        datetime=c.datetime,
+        capacity=c.capacity,
+        image=c.image,
+        free_spots=free_spots,
+        is_full=is_full
+    )

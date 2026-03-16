@@ -1,0 +1,8 @@
+uvicorn
+fastapi
+sqlalchemy
+psycopg
+psycopg2-binary
+PyJWT
+passlib>=1.7.4
+python-multipart
