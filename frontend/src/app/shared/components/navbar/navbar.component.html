@@ -1,0 +1,123 @@
+<nav class="bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Desktop Navigation -->
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a routerLink="/home" class="text-2xl font-bold text-white hover:text-gray-100 transition">
+          🏋️ Gymie
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a
+          routerLink="/home"
+          routerLinkActive="border-b-2 border-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="text-white hover:text-gray-100 transition px-1 py-2"
+        >
+          Home
+        </a>
+
+        <a
+          routerLink="/booking"
+          routerLinkActive="border-b-2 border-white"
+          class="text-white hover:text-gray-100 transition px-1 py-2"
+        >
+          Booking
+        </a>
+
+        <!-- Auth Section -->
+        @if (!isLoggedIn()) {
+          <div class="flex space-x-4">
+            <a
+              routerLink="/login"
+              routerLinkActive="border-b-2 border-white"
+              class="text-white hover:text-gray-100 transition px-1 py-2"
+            >
+              Login
+            </a>
+            <a
+              routerLink="/register"
+              class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"
+            >
+              Register
+            </a>
+          </div>
+        } @else {
+          <div class="flex items-center space-x-4">
+            <span class="text-white font-semibold">👤 {{ userName() }}</span>
+            <button
+              (click)="logout()"
+              class="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition"
+            >
+              Logout
+            </button>
+          </div>
+        }
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button (click)="toggleMenu()" class="md:hidden text-white p-2">
+        @if (!isOpen()) {
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        } @else {
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        }
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (isOpen()) {
+      <div class="md:hidden pb-4 space-y-2">
+        <a
+          routerLink="/home"
+          (click)="isOpen.set(false)"
+          class="block text-white hover:bg-blue-500 px-4 py-2 rounded transition"
+        >
+          Home
+        </a>
+
+        <a
+          routerLink="/booking"
+          (click)="isOpen.set(false)"
+          class="block text-white hover:bg-blue-500 px-4 py-2 rounded transition"
+        >
+          Booking
+        </a>
+
+        @if (!isLoggedIn()) {
+          <a
+            routerLink="/login"
+            (click)="isOpen.set(false)"
+            class="block text-white hover:bg-blue-500 px-4 py-2 rounded transition"
+          >
+            Login
+          </a>
+          <a
+            routerLink="/register"
+            (click)="isOpen.set(false)"
+            class="block text-white hover:bg-blue-500 px-4 py-2 rounded transition"
+          >
+            Register
+          </a>
+        } @else {
+          <div class="flex flex-col space-y-2 px-4 py-2">
+            <span class="text-white font-semibold">👤 {{ userName() }}</span>
+            <button
+              (click)="logout()"
+              class="bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600 transition w-full"
+            >
+              Logout
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</nav>
