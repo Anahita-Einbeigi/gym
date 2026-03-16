@@ -1,75 +1,129 @@
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-12 pb-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
     <div class="text-center mb-16">
       <h1 class="text-5xl md:text-6xl font-black text-gray-900 mb-4">Book Your Classes</h1>
       <p class="text-lg text-gray-600">Reserve your spot in premium fitness classes</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-      <!-- Class Card 1 -->
-      <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
-        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
-        <div class="p-8">
-          <div class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-bold mb-4">Monday & Wednesday</div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">Yoga Flow</h2>
-          <p class="text-gray-600 mb-1">6:00 PM - 7:30 PM</p>
-          <p class="text-gray-600 mb-6 text-sm">Expert-led flow for all levels</p>
-          <div class="flex items-center justify-between mb-6 bg-gray-50 p-4 rounded-lg">
-            <span class="font-semibold text-gray-900">Capacity</span>
-            <span class="text-lg font-bold"><span class="text-orange-600">15</span><span class="text-gray-400">/20</span></span>
-          </div>
-          <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold transition shadow-md">Book Now</button>
+    <!-- Messages -->
+    @if (errorMessage()) {
+      <div class="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-lg">
+        {{ errorMessage() }}
+      </div>
+    }
+    @if (successMessage()) {
+      <div class="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-lg">
+        {{ successMessage() }}
+      </div>
+    }
+
+    <!-- Login Prompt -->
+    @if (!isLoggedIn()) {
+      <div class="mb-12 p-6 bg-orange-50 border-2 border-orange-200 rounded-xl text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Want to Book a Class?</h3>
+        <p class="text-gray-600 mb-4">Sign in to your account to book classes and manage your reservations</p>
+        <div class="flex gap-4 justify-center flex-wrap">
+          <a href="/login" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-bold transition">
+            Login
+          </a>
+          <a href="/register" class="bg-white border-2 border-orange-500 text-orange-600 px-6 py-3 rounded-lg font-bold hover:bg-orange-50 transition">
+            Register
+          </a>
         </div>
       </div>
+    }
 
-      <!-- Class Card 2 -->
-      <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
-        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
-        <div class="p-8">
-          <div class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-bold mb-4">Tuesday & Thursday</div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">CrossFit</h2>
-          <p class="text-gray-600 mb-1">7:00 PM - 8:00 PM</p>
-          <p class="text-gray-600 mb-6 text-sm">High-intensity functional training</p>
-          <div class="flex items-center justify-between mb-6 bg-gray-50 p-4 rounded-lg">
-            <span class="font-semibold text-gray-900">Capacity</span>
-            <span class="text-lg font-bold"><span class="text-orange-600">18</span><span class="text-gray-400">/20</span></span>
-          </div>
-          <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold transition shadow-md">Book Now</button>
+    <!-- Booking History for Logged In Users -->
+    @if (isLoggedIn() && (userBookings().length > 0)) {
+      <div class="mb-16">
+        <h2 class="text-4xl font-black text-gray-900 mb-8">Your Bookings</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          @for (booking of userBookings(); track booking.id) {
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border-2 border-green-200 hover:shadow-lg transition">
+              <div class="h-1 bg-gradient-to-r from-green-500 to-green-400"></div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                  <h3 class="text-2xl font-bold text-gray-900">{{ classes().find(c => c.id === booking.class_id)?.name || 'Class' }}</h3>
+                  <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">Booked</span>
+                </div>
+                <p class="text-gray-600 mb-2">🏋️ Trainer: {{ classes().find(c => c.id === booking.class_id)?.trainer || 'N/A' }}</p>
+                <p class="text-gray-600 mb-4">📅 {{ formatDateTime(classes().find(c => c.id === booking.class_id)?.datetime || '') }}</p>
+                <button (click)="cancelBooking(booking.id, booking.class_id)" [disabled]="isLoading()" class="w-full bg-red-500 hover:bg-red-600 disabled:bg-gray-400 text-white py-3 rounded-lg font-bold transition">
+                  {{ isLoading() ? 'Cancelling...' : 'Cancel Booking' }}
+                </button>
+              </div>
+            </div>
+          }
         </div>
       </div>
+    }
 
-      <!-- Class Card 3 -->
-      <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
-        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
-        <div class="p-8">
-          <div class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-bold mb-4">Monday & Friday</div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">Pilates</h2>
-          <p class="text-gray-600 mb-1">5:00 PM - 6:00 PM</p>
-          <p class="text-gray-600 mb-6 text-sm">Strength and flexibility training</p>
-          <div class="flex items-center justify-between mb-6 bg-gray-50 p-4 rounded-lg">
-            <span class="font-semibold text-gray-900">Capacity</span>
-            <span class="text-lg font-bold"><span class="text-orange-600">12</span><span class="text-gray-400">/20</span></span>
-          </div>
-          <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold transition shadow-md">Book Now</button>
+    <!-- Available Classes -->
+    <div>
+      <h2 class="text-4xl font-black text-gray-900 mb-8">{{ isLoggedIn() ? 'Available Classes' : 'All Classes' }}</h2>
+
+      @if (isLoading() && classes().length === 0) {
+        <div class="text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div>
+          <p class="text-gray-600 mt-4">Loading classes...</p>
         </div>
-      </div>
+      }
 
-      <!-- Class Card 4 -->
-      <div class="bg-white rounded-xl shadow-md opacity-75 transition duration-300 overflow-hidden border border-gray-200">
-        <div class="h-1 bg-gradient-to-r from-gray-400 to-gray-400"></div>
-        <div class="p-8">
-          <div class="inline-block bg-gray-100 text-gray-600 px-4 py-1 rounded-full text-sm font-bold mb-4">Saturday & Sunday</div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">Spinning</h2>
-          <p class="text-gray-600 mb-1">8:00 AM - 9:00 AM</p>
-          <p class="text-gray-600 mb-6 text-sm">High-energy cardio cycling class</p>
-          <div class="flex items-center justify-between mb-6 bg-gray-50 p-4 rounded-lg">
-            <span class="font-semibold text-gray-900">Capacity</span>
-            <span class="text-lg font-bold"><span class="text-red-600">20</span><span class="text-gray-400">/20</span></span>
-          </div>
-          <button disabled class="w-full bg-gray-400 text-white py-3 rounded-lg font-bold cursor-not-allowed">Class Full</button>
-        </div>
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        @for (gymClass of classes(); track gymClass.id) {
+          @if (isClassBooked(gymClass.id)) {
+            <!-- Already Booked - Dimmed Card -->
+            <div class="bg-gray-100 rounded-xl shadow-md overflow-hidden border-2 border-green-300 opacity-60">
+              <div class="h-1 bg-gradient-to-r from-green-500 to-green-400"></div>
+              <div class="p-8">
+                <div class="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-bold mb-4">
+                  ✓ Already Booked
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ gymClass.name }}</h2>
+                <p class="text-gray-600 mb-1">🏋️ Trainer: {{ gymClass.trainer }}</p>
+                <p class="text-gray-600 mb-1">{{ gymClass.training }}</p>
+                <p class="text-gray-600 mb-6">📅 {{ formatDateTime(gymClass.datetime) }}</p>
+                <div class="flex items-center justify-between bg-gray-200 p-4 rounded-lg">
+                  <span class="font-semibold text-gray-900">Availability</span>
+                  <span class="text-lg font-bold text-gray-500">{{ gymClass.free_spots }}/{{ gymClass.capacity }}</span>
+                </div>
+              </div>
+            </div>
+          } @else {
+            <!-- Available Class Card -->
+            <div class="bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border-2 border-orange-200 hover:border-orange-500" [class.opacity-75]="gymClass.is_full">
+              <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+              <div class="p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ gymClass.name }}</h2>
+                <p class="text-gray-600 mb-1">🏋️ Trainer: {{ gymClass.trainer }}</p>
+                <p class="text-gray-600 mb-1">{{ gymClass.training }}</p>
+                <p class="text-gray-600 mb-6">📅 {{ formatDateTime(gymClass.datetime) }}</p>
+                <div class="flex items-center justify-between mb-6 bg-gray-50 p-4 rounded-lg">
+                  <span class="font-semibold text-gray-900">Availability</span>
+                  @if (gymClass.free_spots > 0) {
+                    <span class="text-lg font-bold"><span class="text-orange-600">{{ gymClass.free_spots }}</span><span class="text-gray-400">/{{ gymClass.capacity }}</span></span>
+                  } @else {
+                    <span class="text-lg font-bold text-red-600">FULL</span>
+                  }
+                </div>
 
+                @if (gymClass.is_full) {
+                  <button disabled class="w-full bg-gray-400 text-white py-3 rounded-lg font-bold cursor-not-allowed">Class Full</button>
+                } @else if (!isLoggedIn()) {
+                  <a href="/login" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-bold transition shadow-md text-center block">
+                    Login to Book
+                  </a>
+                } @else {
+                  <button (click)="bookClass(gymClass.id)" [disabled]="isLoading()" class="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 text-white py-3 rounded-lg font-bold transition shadow-md">
+                    {{ isLoading() ? 'Booking...' : 'Book Now' }}
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        }
+      </div>
     </div>
   </div>
 </div>
