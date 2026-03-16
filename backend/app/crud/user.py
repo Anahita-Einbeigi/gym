@@ -11,7 +11,7 @@ from app.utils.auth import (
     ACCESS_TOKEN_EXPIRE_MINUTES
 )
 
-
+# check users
 def get_user(user_id: int, db: Session):
     user = db.query(User).filter(User.id == user_id).first()
 
@@ -31,7 +31,7 @@ def get_user_by_email(email: str, db: Session):
 def get_user_by_username(name: str, db: Session):
     return db.query(User).filter(User.name == name).first()
 
-
+# register user
 def register_user(user: UserCreate, db: Session):
     # Check email
     if get_user_by_email(user.email, db):
@@ -61,7 +61,7 @@ def register_user(user: UserCreate, db: Session):
 
     return db_user
 
-
+# login user
 def login_user(credentials: UserLogin, db: Session):
 
     user = get_user_by_email(credentials.email, db)

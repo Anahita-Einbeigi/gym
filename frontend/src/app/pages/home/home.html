@@ -1,28 +1,214 @@
-<div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 pt-12">
-  <div class="max-w-4xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <h1 class="text-5xl font-bold text-gray-900 mb-4">Welcome to Gymie 🏋️</h1>
-      <p class="text-xl text-gray-600">Your ultimate fitness companion</p>
+<!-- HERO SECTION -->
+<section class="relative w-full min-h-screen overflow-hidden flex items-center justify-center pt-20 pb-10">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080');"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-orange-900/70 via-amber-900/60 to-orange-800/70"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 sm:px-6 max-w-5xl">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+      Transform Your <span class="bg-gradient-to-r from-orange-300 to-yellow-200 bg-clip-text text-transparent">Fitness</span>
+    </h1>
+
+    <p class="text-lg sm:text-xl md:text-2xl text-orange-100 mb-6 sm:mb-8 font-light px-2 drop-shadow-md">
+      Industrial-grade fitness experience with expert trainers and premium facilities
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 mb-8 sm:mb-12">
+      <a routerLink="/register" class="bg-orange-500 hover:bg-orange-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition transform hover:scale-105 shadow-xl w-full sm:w-auto drop-shadow-lg text-center">
+        Start Your Journey
+      </a>
+      <a routerLink="/booking" class="bg-white/90 hover:bg-white text-gray-900 px-8 sm:px-10 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition border-2 border-white w-full sm:w-auto backdrop-blur-sm drop-shadow-lg text-center">
+        Explore Plans
+      </a>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <div class="text-4xl mb-4">📅</div>
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">Book Classes</h2>
-        <p class="text-gray-600">Reserve your spot in our fitness classes</p>
+    <div class="grid grid-cols-3 gap-4 sm:gap-8 px-2">
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold text-orange-300">500+</h3>
+        <p class="text-orange-100 text-xs sm:text-sm mt-1 font-medium">Active Members</p>
       </div>
-
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <div class="text-4xl mb-4">💪</div>
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">Stay Fit</h2>
-        <p class="text-gray-600">Join our community of fitness enthusiasts</p>
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold text-orange-300">50+</h3>
+        <p class="text-orange-100 text-xs sm:text-sm mt-1 font-medium">Classes Weekly</p>
       </div>
-
-      <div class="bg-white rounded-lg shadow-lg p-6">
-        <div class="text-4xl mb-4">🎯</div>
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">Achieve Goals</h2>
-        <p class="text-gray-600">Reach your fitness objectives with our classes</p>
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold text-orange-300">4.9★</h3>
+        <p class="text-orange-100 text-xs sm:text-sm mt-1 font-medium">Customer Rating</p>
       </div>
     </div>
   </div>
-</div>
+
+</section>
+
+
+<!-- PREMIUM FEATURES SECTION -->
+<section class="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    
+    <div class="text-center mb-16 sm:mb-20">
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-4">Premium Features</h2>
+      <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">Experience fitness like never before with our world-class amenities and professional guidance</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Feature 1 -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
+        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+        <div class="p-8">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-orange-100 text-orange-600 mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M5 9V7a1 1 0 011-1h8a1 1 0 011 1v2M5 9c0 1.657.895 3.146 2.235 3.954M5 9c0-1.657.895-3.146 2.235-3.954m0 0A3.002 3.002 0 0010 3c1.657 0 3.146.895 3.954 2.235m0 0A3.002 3.002 0 0115 9m0 0c0 1.657-.895 3.146-2.235 3.954"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Smart Booking</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Seamless reservation system with real-time availability and instant confirmations
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
+        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+        <div class="p-8">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-orange-100 text-orange-600 mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM9 12a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Certified Trainers</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Industry-leading professionals with extensive experience and specialized certifications
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
+        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+        <div class="p-8">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-orange-100 text-orange-600 mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Community</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Connect with like-minded fitness enthusiasts and build lasting relationships
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
+        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+        <div class="p-8">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-orange-100 text-orange-600 mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Performance Tracking</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Advanced analytics to monitor your progress and celebrate milestones
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
+        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+        <div class="p-8">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-orange-100 text-orange-600 mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Personalized Plans</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Custom fitness routines tailored to your specific goals and fitness level
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-2xl transition duration-300 overflow-hidden border border-gray-200 hover:border-orange-500">
+        <div class="h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+        <div class="p-8">
+          <div class="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-orange-100 text-orange-600 mb-4 group-hover:bg-orange-500 group-hover:text-white transition">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.3A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">24/7 Support</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Round-the-clock customer support to assist with any questions or concerns
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PRICING SECTION -->
+<section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    
+    <div class="text-center mb-10 sm:mb-16">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-2 sm:mb-4">Choose Your Plan</h2>
+      <p class="text-base sm:text-lg text-gray-600">Flexible pricing for every budget</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+      <div class="bg-white rounded-2xl border-2 border-gray-200 p-6 sm:p-8 hover:border-orange-500 transition">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic</h3>
+        <p class="text-gray-600 mb-4 text-sm sm:text-base">Perfect to start</p>
+        <div class="mb-6">
+          <span class="text-3xl sm:text-4xl font-bold text-orange-600">299</span>
+          <span class="text-gray-600 text-sm">kr/month</span>
+        </div>
+        <a routerLink="/register" class="inline-block w-full bg-orange-500 hover:bg-orange-600 text-white py-2 sm:py-3 rounded-lg font-semibold transition mb-6 text-center">
+          Get Started
+        </a>
+        <ul class="space-y-3 text-gray-700 text-sm sm:text-base">
+          <li>✓ 5 classes/week</li>
+          <li>✓ Access to gym</li>
+          <li>✓ Basic support</li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl border-2 border-orange-600 p-6 sm:p-8 transform lg:scale-105 shadow-2xl">
+        <div class="bg-white text-orange-600 px-3 py-1 rounded-full inline-block text-xs sm:text-sm font-bold mb-4">⭐ POPULAR</div>
+        <h3 class="text-2xl font-bold text-white mb-2">Premium</h3>
+        <p class="text-orange-100 mb-4 text-sm sm:text-base">Most popular</p>
+        <div class="mb-6">
+          <span class="text-3xl sm:text-4xl font-bold text-white">499</span>
+          <span class="text-orange-100 text-sm">kr/month</span>
+        </div>
+        <a routerLink="/register" class="inline-block w-full bg-white text-orange-600 py-2 sm:py-3 rounded-lg font-semibold transition hover:bg-gray-100 mb-6">
+          Get Started
+        </a>
+        <ul class="space-y-3 text-white text-sm sm:text-base">
+          <li>✓ Unlimited classes</li>
+          <li>✓ Personal trainer</li>
+          <li>✓ Priority support</li>
+          <li>✓ Nutrition plans</li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-2xl border-2 border-gray-200 p-6 sm:p-8 hover:border-orange-500 transition sm:col-span-2 lg:col-span-1">
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+        <p class="text-gray-600 mb-4 text-sm sm:text-base">For serious athletes</p>
+        <div class="mb-6">
+          <span class="text-3xl sm:text-4xl font-bold text-orange-600">799</span>
+          <span class="text-gray-600 text-sm">kr/month</span>
+        </div>
+        <a routerLink="/register" class="inline-block w-full bg-orange-500 hover:bg-orange-600 text-white py-2 sm:py-3 rounded-lg font-semibold transition mb-6 text-center">
+          Get Started
+        </a>
+        <ul class="space-y-3 text-gray-700 text-sm sm:text-base">
+          <li>✓ Everything in Premium</li>
+          <li>✓ 1-on-1 coaching</li>
+          <li>✓ Meal planning</li>
+          <li>✓ VIP access</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</section>
