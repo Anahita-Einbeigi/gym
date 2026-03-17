@@ -57,11 +57,11 @@ export class BookingComponent implements OnInit {
     this.errorMessage.set(null);
     
     this.bookingService.getClasses().subscribe({
-      next: (classes) => {
+      next: (classes: GymClass[]) => {
         this.classes.set(classes);
         this.isLoading.set(false);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error loading classes:', error);
         this.errorMessage.set('Failed to load classes. Using demo data.');
         this.loadDemoClasses();
@@ -74,12 +74,12 @@ export class BookingComponent implements OnInit {
     if (!this.userId()) return;
 
     this.bookingService.getUserBookings(this.userId()!).subscribe({
-      next: (bookings) => {
+      next: (bookings: Booking[]) => {
         this.userBookings.set(bookings);
-        const bookedIds = new Set(bookings.map(b => b.class_id));
+        const bookedIds = new Set<number>(bookings.map(b => b.class_id));
         this.bookedClassIds.set(bookedIds);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error loading bookings:', error);
       }
     });
@@ -101,7 +101,7 @@ export class BookingComponent implements OnInit {
     this.successMessage.set(null);
 
     this.bookingService.createBooking(this.userId()!, classId).subscribe({
-      next: (booking) => {
+      next: (booking: Booking) => {
         this.successMessage.set('Class booked successfully!');
         this.bookedClassIds.update(ids => new Set([...ids, classId]));
         this.userBookings.update(bookings => [...bookings, booking]);
@@ -110,7 +110,7 @@ export class BookingComponent implements OnInit {
         // Clear success message after 3 seconds
         setTimeout(() => this.successMessage.set(null), 3000);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error booking class:', error);
         this.errorMessage.set('Failed to book class. Please try again.');
         this.isLoading.set(false);
@@ -143,7 +143,7 @@ export class BookingComponent implements OnInit {
         // Clear success message after 3 seconds
         setTimeout(() => this.successMessage.set(null), 3000);
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error cancelling booking:', error);
         this.errorMessage.set('Failed to cancel booking. Please try again.');
         this.isLoading.set(false);
